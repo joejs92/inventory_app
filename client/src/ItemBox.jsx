@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import Button from './button.jsx';
-
+//still need to add the delete button.
 function ItemBox ({id,name,image,qty}){
     const items = [id, name, qty]
     const [quant, setQuant] = useState({qty}); //for changing the quantity of the item.
