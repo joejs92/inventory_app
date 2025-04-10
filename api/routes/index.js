@@ -3,6 +3,6 @@ const controller = require("../controllers/controller")
 
 const index = Router();
 
-index.get("/", controller.getInventory);
+index.get("/", controller.getCategories);
 
 module.exports = index;

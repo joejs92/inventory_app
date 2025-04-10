@@ -15,7 +15,13 @@ async function getInventory(req, res) {
     res.send("Usernames: " + inventory.map(item => item.name).join(", ")); */
     
   }
+
+async function getCategories(req,res){
+  const categories = await db.getAllCategories();
+  res.send(categories);
+}
     
 module.exports = {
-    getInventory
+    getInventory,
+    getCategories
 };

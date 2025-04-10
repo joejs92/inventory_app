@@ -5,6 +5,11 @@ async function getAllInventory() {
   return rows;
 }
 
+async function getAllCategories() {
+  const { rows } = await pool.query("SELECT DISTINCT category FROM inventory");
+  return rows;
+}
+
 async function getCategoryInventory(category) {
   const { rows } = await pool.query("SELECT * FROM inventory WHERE category = $1",[category]);
   return rows;
@@ -17,5 +22,6 @@ async function insertUsername(username) {
 module.exports = {
   getAllInventory,
   insertUsername,
-  getCategoryInventory
+  getCategoryInventory,
+  getAllCategories
 };

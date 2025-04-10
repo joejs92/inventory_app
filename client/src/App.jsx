@@ -5,9 +5,9 @@ import axios from "axios";
 
 function App() {
   const [APIText, setAPIText] = useState([]);
-
+  //"http://localhost:3000/?category="
   const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:3000/?category=book");
+    const response = await axios.get("http://localhost:3000/");
     setAPIText(response.data);
     console.log(response);
   };
@@ -25,10 +25,8 @@ function App() {
       <Button text = "Please Clap" handleClick={buttonTest}></Button>
       <div>{APIText.map((item)=>{
         return (
-      <div key={item.id} >
-        <p>{item.name}</p>
+      <div key={item.index} >
         <p>{item.category}</p>
-        <p>{item.quantity}</p>
       </div>
       )
       })}</div>

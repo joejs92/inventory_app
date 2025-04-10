@@ -7,7 +7,7 @@ function ItemBox ({id,name,image,qty}){
     return(
         <div className='itemBox' id = {id}>
             {items.map((item)=>{
-                return(<p key = {index}></p>)
+                return(<p key = {index}>{item}</p>)
             })}
         </div>
     )
