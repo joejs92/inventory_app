@@ -9,6 +9,10 @@ function Content(){
     const [APICategories, setAPICategories] = useState([]);
     const [listCategories, setListCategories] = useState([]);
 
+    function buttonTest(id){
+      window.alert(id);
+    }
+
 //You need a query to get each unique category.
     const fetchAPI = async()=>{
         const response = await axios.get("http://localhost:3000/");
@@ -16,16 +20,23 @@ function Content(){
         console.log(response);
     }
 
+    useEffect(()=>{
+      fetchAPI();
+    },[]);
+
     return (
         <>
-          <div>{APIText.map((item)=>{
+          <div>{APICategories.map((item)=>{
             return (
-          <div key={item.index} >
-            <p>{item.category}</p>
-          </div>
-          )
+              <div onClick = {()=>buttonTest(item.category)} id = {item.category}>
+                <CategoryButton text = {item.category} id = {item.category} handleClick={buttonTest} />
+              </div>
+            )
           })}</div>
         </>
     )
     
 }
+console.log(Event);
+
+export default Content;
