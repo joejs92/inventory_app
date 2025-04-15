@@ -1,9 +1,13 @@
 const db = require("../db/queries");
-
+//Seems a bit messy. Might be best to at some point separate the function
+//and give each 'if' its own function. This will work for now.
 async function getInventory(req, res) {
     const category = req.query.category;
-    //console.log(category);
-    if(category==''){
+    if(category == undefined){
+      const categories = await db.getAllCategories();
+      res.send(categories);
+    }
+    else if(category==''){
       const inventory = await db.getAllInventory();
       res.send(inventory);
     }

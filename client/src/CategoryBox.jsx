@@ -5,6 +5,7 @@ import ItemBox from './ItemBox';
 function CategoryBox({itemList, name, id}){
     const [itemObject, setItemObject] = useState(itemList);
     //here goes the function to add an item.
+    console.log(itemObject);
     return(
         <div className='categoryBox' id = {id}>
             <div className='categoryHeader'>

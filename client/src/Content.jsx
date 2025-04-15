@@ -17,12 +17,11 @@ function Content(){
     const fetchAPI = async()=>{
         const response = await axios.get("http://localhost:3000/");
         setAPICategories(response.data);
-        console.log(response);
     }
 
-    useEffect(()=>{
+    /* useEffect(()=>{
       fetchAPI();
-    },[]);
+    },[]); */
 
     return (
         <>
@@ -37,6 +36,5 @@ function Content(){
     )
     
 }
-console.log(Event);
 
 export default Content;

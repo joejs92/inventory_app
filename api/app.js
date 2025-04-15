@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const index = require("./routes/index");
+const categories = require("./routes/categories");
 const path = require("node:path");
 const cors = require("cors");
 const corsOptions = {
@@ -15,6 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", index);
+app.use("/category", categories);
 
 const PORT = 3000;
 app.listen(PORT, () => {
