@@ -4,28 +4,12 @@ import Button from './button.jsx'
 import Content from './Content.jsx'
 import CategoryBox from './CategoryBox.jsx'
 import axios from "axios";
-
+//You may need to take the fetch function out of App, and use the result as
+//the default APIText state. Will have to change useEffect below.
 function App() {
-  const [APIText, setAPIText] = useState([]);
-  //"http://localhost:3000/?category="
-  const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:3000/?category=woodwinds");
-    setAPIText(response.data);
-    //console.log(response);
-  };
-  //below function calls fetchAPI at page initialization.
-  useEffect(()=>{
-    fetchAPI();
-  },[]);
-
-  function buttonTest(){
-    window.alert("Clap");
-  }
-
   return (
     <>
-      <Button text = "Please Clap" handleClick={buttonTest}></Button>
-      <CategoryBox itemList={APIText}/>
+      <Content/>
     </>
   )
 }
