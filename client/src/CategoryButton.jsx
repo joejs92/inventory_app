@@ -13,5 +13,5 @@ function CategoryButton({text,handleClick,id}){
             </div>
         </div>
     )
-}
+} 
 export default CategoryButton;

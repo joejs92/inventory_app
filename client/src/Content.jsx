@@ -37,17 +37,17 @@ function Content(){
   }
 
   return (
-    <div>
+    <div className='content'>
       {defaultState ? (
-        <div>
+        <>
         {APIText.map((item)=>{
           return (
-            <div onClick = {()=>buttonTest(item.category)} id = {item.category}>
+            <div onClick = {()=>buttonTest(item.category)} className = 'categoryBtnWrapper'>
               <CategoryButton text = {item.category} id = {item.id} handleClick={buttonTest} />
             </div>
           )
         })}
-        </div>
+        </>
       ):(
         <>
           <Button text = {"Categories"} handleClick={setState}/>

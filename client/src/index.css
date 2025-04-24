@@ -1,0 +1,46 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.page{
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    height: 100vh;
+}
+
+.header{
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+}
+
+.categoryBtn{
+    border: 2px solid black;
+    width: 300px;
+    height: 150px;
+}
+
+.categoryBtnWrapper{
+    margin: 8px;
+    width: 300px;
+    height: 150px;
+}
+
+.footer{
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
