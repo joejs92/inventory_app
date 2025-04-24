@@ -23,9 +23,15 @@
     background-color: lightblue;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
 }
 
 .categoryBtn{
+    display: flex;
+    flex-direction: column;
     border: 2px solid black;
     width: 300px;
     height: 150px;
@@ -35,6 +41,49 @@
     margin: 8px;
     width: 300px;
     height: 150px;
+}
+
+.categoryBtnHeader{
+    display: flex;
+    justify-content: right;
+} 
+
+.categoryBtnBody{
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: center;
+}
+.categoryBox{
+    width: 50%;
+    max-height: fit-content;
+    border: 2px solid black;
+}
+
+.categoryHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.categoryContent{
+    margin-top: 4px;
+}
+
+.itemBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid black;
+    margin: 2px;
+    padding: 2px;
+
+}
+
+#categoryBtn{
+    max-width: fit-content;
+    max-height: fit-content;
+    padding: 4px;
 }
 
 .footer{

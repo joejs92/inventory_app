@@ -50,8 +50,8 @@ function Content(){
         </>
       ):(
         <>
-          <Button text = {"Categories"} handleClick={setState}/>
           <CategoryBox itemList={APIText} name = {category} id = {category}/>
+          <Button text = {"Categories"} handleClick={setState} id = "categoryBtn"/>
         </>
       )}
     </div>

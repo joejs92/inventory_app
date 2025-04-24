@@ -14,7 +14,7 @@ function CategoryBox({itemList, name, id}){
                 </div>
                 <Button text = {"Add Item"}/>
             </div>
-            <div>
+            <div className='categoryContent'>
                 <ul>
                     {itemList.map((item)=>{
                         return(
