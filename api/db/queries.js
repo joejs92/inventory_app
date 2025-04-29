@@ -12,7 +12,7 @@ async function getAllCategories() {
 
 async function getCategoryInventory(category) {
   const { rows } = await pool.query("SELECT * FROM inventory WHERE category = $1",[category]);
-  return rows;
+  return rows; 
 }
 
 async function insertUsername(username) {

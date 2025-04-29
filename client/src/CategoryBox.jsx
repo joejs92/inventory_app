@@ -17,15 +17,42 @@ function CategoryBox({itemList, name, id}){
             <div className='categoryContent'>
                 <ul>
                     {itemList.map((item)=>{
+                        //console.log(item);
                         return(
                             <li key={item.id}>
                                 <ItemBox id={item.id} name = {item.name} qty = {item.quantity}/>
                             </li>
                         )
                     })}
-                </ul>
+                </ul> 
             </div>
         </div>
+        /* <>
+        {itemList.map((categoryItem)=>{
+            console.log(categoryItem);
+            return(
+                <div className='categoryBox' id = {categoryItem.category}>
+                    <div className='categoryHeader'>
+                        <div className='categoryName'>
+                            <h2>{categoryItem.category}</h2>
+                        </div>
+                        <Button text = {"Add Item"}/>
+                    </div>
+                    <div className='categoryContent'>
+                        {<ul>
+                            {categoryItem.inventory.map((item)=>{
+                                return(
+                                <li key={item.id}>
+                                    <ItemBox id={item.id} name = {item.name} qty = {item.quantity}/>
+                                </li>
+                                )
+                            })}
+                        </ul>} 
+                        </div>
+                        </div>
+                    )
+                })}
+            </> */
     )
 }
 export default CategoryBox

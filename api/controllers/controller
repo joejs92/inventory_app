@@ -11,9 +11,18 @@ async function getInventory(req, res) {
       const inventory = await db.getAllInventory();
       res.send(inventory);
     }
+    else if(category=='all'){
+      const categories = await db.getAllCategories();
+      for(i in categories){
+        const inventory = await db.getCategoryInventory(categories[i].category);
+        categories[i]['inventory'] = inventory;
+      }
+      res.send(categories);
+    }
     else{
       const inventory = await db.getCategoryInventory(category);
-      res.send(inventory);
+      const categories = [{category: category, inventory: inventory}];
+      res.send(categories);
     }
     /*
     res.send("Usernames: " + inventory.map(item => item.name).join(", ")); */
