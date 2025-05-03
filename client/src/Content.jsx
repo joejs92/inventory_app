@@ -57,7 +57,7 @@ function Content({modalFunction}){
         <div onClick = {()=>buttonTest("all")} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"All Categories"} id = {'all'}/>
         </div>
-        <div onClick={()=>modalFunction()} className = 'categoryBtnWrapper'>
+        <div onClick={()=>modalFunction('add')} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"Add Category"} id = {'addCategory'} />
         </div>
         </>
@@ -68,6 +68,7 @@ function Content({modalFunction}){
               <CategoryBox itemList={categoryItem.inventory} 
               name = {categoryItem.category} 
               id = {categoryItem.category}
+              addClick = {modalFunction}
               />
             )
           })}

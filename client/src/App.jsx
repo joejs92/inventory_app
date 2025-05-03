@@ -9,9 +9,12 @@ import MyModal from './MyModal.jsx'
 //the default APIText state. Will have to change useEffect below.
 function App() {
   const [openModal, setOpenModal] = useState(false);
+  const [componentId, setComponentId] = useState("")
 
-  function openModalFunction(){
+  function openModalFunction(id){
+    setComponentId(id);
     setOpenModal(true);
+    //console.log(componentId);
   }
 
   function closeModalFunction(){
@@ -23,7 +26,7 @@ function App() {
       <Header/>
       <Content modalFunction = {openModalFunction}/>
       <Footer/>
-      {openModal && <><MyModal closeModal={closeModalFunction}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
+      {openModal && <><MyModal closeModal={closeModalFunction} id = {componentId}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
     </div>
   )
 }

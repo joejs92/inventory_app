@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import Button from './button.jsx';
 import ItemBox from './ItemBox';
 
-function CategoryBox({itemList, name, id}){
+function CategoryBox({itemList, name, id, addClick}){
     const [itemObject, setItemObject] = useState(itemList);
 
     const newId = `${id}Add`;
@@ -17,7 +17,7 @@ function CategoryBox({itemList, name, id}){
                 <div className='categoryName'>
                     <h2>{name}</h2>
                 </div>
-                <Button text = {"Add Item"} id = {newId} handleClick={modalTest}/>
+                <Button text = {"Add Item"} id = {newId} handleClick={addClick}/>
             </div>
             <div className='categoryContent'>
                 <ul>
