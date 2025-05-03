@@ -4,7 +4,7 @@ import CategoryButton from './CategoryButton.jsx';
 import CategoryBox from './CategoryBox.jsx';
 import axios from 'axios';
 
-function Content(){
+function Content({modalFunction}){
   const [APIText, setAPIText] = useState([]);
   const [defaultState, setDefaultState] = useState(true);
   const [category, setCategory] = useState("");
@@ -39,6 +39,10 @@ function Content(){
     fetchAPI(false, id);
   }
 
+  function deleteButton(){
+    window.confirm("Are you sure you wish to delete this category?");
+  }
+
   return (
     <div className='content'>
       {defaultState ? (
@@ -46,30 +50,33 @@ function Content(){
         {APIText.map((item)=>{
           return (
             <div onClick = {()=>buttonTest(item.category)} className = 'categoryBtnWrapper'>
-              <CategoryButton text = {item.category} id = {item.category} handleClick={buttonTest} />
+              <CategoryButton text = {item.category} id = {item.category} handleClick={deleteButton} />
             </div>
           )
         })}
         <div onClick = {()=>buttonTest("all")} className = 'categoryBtnWrapper'>
-              <CategoryButton text = {"All Categories"} id = {'all'} handleClick={buttonTest} />
+              <CategoryButton text = {"All Categories"} id = {'all'}/>
+        </div>
+        <div onClick={()=>modalFunction()} className = 'categoryBtnWrapper'>
+              <CategoryButton text = {"Add Category"} id = {'addCategory'} />
         </div>
         </>
       ):(
         <>
           {categoryText.map((categoryItem)=>{
-            console.log(categoryItem);
-            //For some reason it isn't grabbing the updated APIText state
-            //before rendering.
             return(
-              <CategoryBox itemList={categoryItem.inventory} name = {categoryItem.category} id = {categoryItem.category}/>
+              <CategoryBox itemList={categoryItem.inventory} 
+              name = {categoryItem.category} 
+              id = {categoryItem.category}
+              />
             )
           })}
-          {/* <CategoryBox itemList={APIText} name = {category} id = {category}/> */}
           <Button text = {"Categories"} handleClick={setState} id = "categoryBtn"/>
         </>
       )}
+    
     </div>
   )
 }
-
+//closeModal = {closeModalFunction}
 export default Content;
