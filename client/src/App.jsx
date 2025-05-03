@@ -23,7 +23,7 @@ function App() {
       <Header/>
       <Content modalFunction = {openModalFunction}/>
       <Footer/>
-      {openModal && <MyModal closeModal={closeModalFunction}/>}
+      {openModal && <><MyModal closeModal={closeModalFunction}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
     </div>
   )
 }
