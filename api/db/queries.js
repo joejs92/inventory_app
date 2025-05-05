@@ -16,13 +16,10 @@ async function getCategoryInventory(category) {
   return rows; 
 }
 
-async function insertUsername(username) {
-  await pool.query("INSERT INTO inventory (username) VALUES ($1)", [username]);
-}//will need to be redone. I guess I didn't change name values when I copy/pasted.
+
 
 module.exports = {
   getAllInventory,
-  insertUsername,
   getCategoryInventory,
   getAllCategories
 };

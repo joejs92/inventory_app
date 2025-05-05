@@ -33,8 +33,13 @@ async function getCategories(req,res){
   const categories = await db.getAllCategories();
   res.send(categories);
 }
+
+async function deleteInventory(req, res){
+  console.log("Worked");
+}
     
 module.exports = {
     getInventory,
-    getCategories
+    getCategories,
+    deleteInventory
 };
