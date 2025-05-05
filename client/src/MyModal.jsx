@@ -18,7 +18,7 @@ function MyModal({closeModal, id}){
             )}
             <div>
                 <Button text = {"Close"} handleClick={closeModal}/>
-                <Button text = {"Submit"}/>
+                <Button text = {"Submit"} />
             </div>
         </section>
     )

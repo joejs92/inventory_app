@@ -5,7 +5,7 @@ import ItemBox from './ItemBox';
 function CategoryBox({itemList, name, id, addClick}){
     const [itemObject, setItemObject] = useState(itemList);
 
-    const newId = `${id}Add`;
+    const newId = `Add${id}`;
     
     function modalTest(id){
        const newItem = prompt("Enter new item");
