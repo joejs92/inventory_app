@@ -4,15 +4,14 @@ require('dotenv').config();
 const SQL = `
 CREATE TABLE IF NOT EXISTS inventory (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  category VARCHAR (255),
+  category INT,
   name VARCHAR (255),
   quantity INT  
 );
 
 CREATE TABLE IF NOT EXISTS categories (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  category VARCHAR (255),
-);
+  category VARCHAR (255));
 
 INSERT INTO categories (category) VALUES ('strings'), ('woodwinds'), ('brass'),
 ('percussion'), ('book');

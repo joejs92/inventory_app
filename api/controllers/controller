@@ -35,7 +35,9 @@ async function getCategories(req,res){
 }
 
 async function deleteInventory(req, res){
-  console.log("Worked");
+  const category = req.query.category;
+  const categories = await db.deleteCategory(category);
+  res.send(categories);
 }
     
 module.exports = {

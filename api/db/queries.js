@@ -16,10 +16,18 @@ async function getCategoryInventory(category) {
   return rows; 
 }
 
+async function deleteCategory(category){
+  await pool.query("DELETE FROM inventory WHERE inventory.category = (SELECT id FROM categories WHERE categories.category = $1)",[category]);
+  await pool.query("DELETE FROM categories WHERE categories.category = $1",[category]);
+  const { rows } = await pool.query("SELECT * FROM categories");
+  return rows;
+}
+
 
 
 module.exports = {
   getAllInventory,
   getCategoryInventory,
-  getAllCategories
+  getAllCategories,
+  deleteCategory
 };

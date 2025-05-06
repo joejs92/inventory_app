@@ -41,15 +41,12 @@ function Content({modalFunction}){
 
   const deleteFunction = async(category) => {
     response = await axios.delete(`http://localhost:3000/?category=${category}`);
+    setAPIText(response.data);
   }
 
   function deleteButton(category){
-    if(window.confirm("Are you sure you wish to delete this category?")){
+    if(window.confirm("Are you sure you wish to delete this category and everything in it?")){
       deleteFunction(category);
-      window.alert("You have chosen 'Yes'.");
-    }
-    else{
-      window.alert("You have chosen 'No'.")
     }
   }
 
