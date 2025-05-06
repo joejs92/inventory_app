@@ -23,11 +23,14 @@ async function deleteCategory(category){
   return rows;
 }
 
-
+async function deleteItem(id){
+  await pool.query("DELETE FROM inventory WHERE id = $1", [id]);
+}
 
 module.exports = {
   getAllInventory,
   getCategoryInventory,
   getAllCategories,
-  deleteCategory
+  deleteCategory,
+  deleteItem
 };

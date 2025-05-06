@@ -24,24 +24,23 @@ async function getInventory(req, res) {
       const categories = [{category: category, inventory: inventory}];
       res.send(categories);
     }
-    /*
-    res.send("Usernames: " + inventory.map(item => item.name).join(", ")); */
-    
   }
-
-async function getCategories(req,res){
-  const categories = await db.getAllCategories();
-  res.send(categories);
-}
 
 async function deleteInventory(req, res){
   const category = req.query.category;
-  const categories = await db.deleteCategory(category);
-  res.send(categories);
+  const id = req.query.item;
+  if(category){
+    const categories = await db.deleteCategory(category);
+    res.send(categories);
+  }
+  else if(id){
+    await db.deleteItem(id);
+    //res.send(item); 
+    //console.log(item);
+  }
 }
     
 module.exports = {
     getInventory,
-    getCategories,
     deleteInventory
 };
