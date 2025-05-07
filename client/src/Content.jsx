@@ -64,7 +64,7 @@ function Content({modalFunction}){
         <div onClick = {()=>buttonTest("all")} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"All Categories"} id = {'all'}/>
         </div>
-        <div onClick={()=>modalFunction('add')} className = 'categoryBtnWrapper'>
+        <div onClick={()=>modalFunction('addCategory')} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"Add Category"} id = {'addCategory'} />
         </div>
         </>

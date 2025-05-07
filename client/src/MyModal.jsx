@@ -1,25 +1,31 @@
 import Button from './button';
 
-function MyModal({closeModal, id}){
+function MyModal({closeModal, id, submitModal}){
+   //the buttons look a bit weird and will have to be reworked, but having 
+   //them like this prevents a warning about disconecting the form.
     return(
         <section className="modal">
-            {id == 'add'? (
-                <form method='post'>
-                    <label for="newCategory">New Category:</label>
-                    <input type="text" id="newCategory" placeholder={"New Category Name"}></input>
+            {id == 'addCategory'? (
+                <>
+                <form action={submitModal}>
+                    <label htmlFor = "newCategory">New Category:</label>
+                    <input name = "newCategory" id = "newCategory" placeholder={"New Category Name"}></input>
+                    <button type='submit'>Submit</button>
                 </form>
-            ):(
-                <form method='post'>
-                    <label for="newItem">New Item:</label>
-                    <input type="text" id="newItem" placeholder={"Item Name"}></input>
-                    <label for="newItemQty">Item Quantity:</label>
-                    <input type="text" id="newItemQty" placeholder={"Number of Items"}></input>
-                </form>
-            )}
-            <div>
                 <Button text = {"Close"} handleClick={closeModal}/>
-                <Button text = {"Submit"} />
-            </div>
+                </>
+            ):(
+                <>
+                <form action = {submitModal}>
+                    <label htmlFor = "newItem" >New Item:</label>
+                    <input name = "newItem" id="newItem" placeholder={"Item Name"}></input>
+                    <label htmlFor = "newItemQty" >Item Quantity:</label>
+                    <input name="newItemQty" id="newItemQty" placeholder={"Number of Items"}></input>
+                    <button type='submit'>Submit</button>
+                </form>
+                <Button text = {"Close"} handleClick={closeModal}/>
+                </>
+            )}
         </section>
     )
 }
