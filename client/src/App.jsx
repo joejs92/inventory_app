@@ -11,10 +11,50 @@ import axios from 'axios';
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [componentId, setComponentId] = useState("")
+  const [APIText, setAPIText] = useState([]);
+  const [defaultState, setDefaultState] = useState(true);
+  const [category, setCategory] = useState("");
+  const [categoryText, setCategoryText] = useState([]);
 
-  const addFunction = async() => {
-    console.log(APIText);
-  } 
+  function setState(){
+    setDefaultState(true);
+    setCategory("");
+    setCategoryText([]);
+    fetchAPI(true);
+  }
+
+  let response;
+  const fetchAPI = async (defaultState, category) => {
+    if(defaultState == true){
+      response = await axios.get("http://localhost:3000/");
+      setAPIText(response.data);
+    }
+    else{
+      response = await axios.get(`http://localhost:3000/?category=${category}`);
+      setCategoryText(response.data);
+    }
+  };
+
+  useEffect(()=>{
+    fetchAPI(defaultState, category);
+  },[]);
+
+  function buttonTest(id){
+    setCategory(id)
+    setDefaultState(false);
+    fetchAPI(false, id);
+  }
+
+  const deleteFunction = async(category) => {
+    response = await axios.delete(`http://localhost:3000/?category=${category}`);
+    setAPIText(response.data);
+  }
+
+  function deleteButton(category){
+    if(window.confirm("Are you sure you wish to delete this category and everything in it?")){
+      deleteFunction(category);
+    }
+  }
 
   function openModalFunction(id){
     setComponentId(id);
@@ -42,7 +82,13 @@ function App() {
   return (
     <div className='page'>
       <Header/>
-      <Content modalFunction = {openModalFunction}/>
+      <Content modalFunction = {openModalFunction}
+      APIText={APIText}
+      defaultState={defaultState}
+      categoryText={categoryText}
+      buttonTest={buttonTest}
+      deleteButton={deleteButton}
+      setState={setState}/>
       <Footer/>
       {openModal && <><MyModal closeModal={closeModalFunction} id = {componentId} submitModal={sendModalInfo}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
     </div>
