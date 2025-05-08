@@ -3,9 +3,9 @@ import Button from './button.jsx';
 import ItemBox from './ItemBox';
 import axios from 'axios';
 
-function CategoryBox({itemList, name, id, addClick, deleteItem}){
-    //console.log(itemList);
-    //const [itemObject, setItemObject] = useState(itemList);
+function CategoryBox({itemList, name, id, addClick}){
+    console.log(itemList);
+    const [itemObject, setItemObject] = useState(itemList);
     
     /* const deleteItem = async(id) => {
         if(window.confirm("Are you sure you want to permanently delete this item?")){
@@ -19,7 +19,7 @@ function CategoryBox({itemList, name, id, addClick, deleteItem}){
                 <div className='categoryName'>
                     <h2>{name}</h2>
                 </div>
-                <Button text = {"Add Item"} id = {id} handleClick={addClick}/>
+                <Button text = {"Add Item"} id = {newId} handleClick={addClick}/>
             </div>
             <div className='categoryContent'>
                 <ul>

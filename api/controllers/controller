@@ -35,26 +35,12 @@ async function deleteInventory(req, res){
   }
   else if(id){
     await db.deleteItem(id);
-  }
-}
-
-async function addInventory(req, res){
-  //The string sent as a parameter needs to be parsed back into an object.
-  const newStuff = JSON.parse(req.query.query);
-  if(newStuff.type == 'category'){
-    //console.log(`Adding the category ${newStuff.items}`);
-    await db.addCategory(newStuff.items);
-    //res.send(results);
-  }
-  else if(newStuff.type == 'inventory'){
-    //console.log(`Adding ${newStuff.quantity} more ${newStuff.items} to the ${newStuff.category} category.`);
-    await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
-    //res.send(results);
+    //res.send(item); 
+    //console.log(item);
   }
 }
     
 module.exports = {
     getInventory,
-    deleteInventory,
-    addInventory
+    deleteInventory
 };

@@ -11,10 +11,10 @@ import axios from 'axios';
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [componentId, setComponentId] = useState("")
-  const [APIText, setAPIText] = useState([]); //for categories
+  const [APIText, setAPIText] = useState([]);
   const [defaultState, setDefaultState] = useState(true);
   const [category, setCategory] = useState("");
-  const [categoryText, setCategoryText] = useState([]); //for CategoriesBoxes
+  const [categoryText, setCategoryText] = useState([]);
 
   function setState(){
     setDefaultState(true);
@@ -72,34 +72,18 @@ function App() {
     setOpenModal(false);
   }
 
-  const addFunction = async(query)=>{
-    await axios.post(`http://localhost:3000/?query=${query}`);
-    /* if(typeOfAdd == 'category'){
-      setAPIText(response.data);
-    }
-    else if(typeOfAdd == 'inventory'){
-      console.log(response.data);
-      //setCategoryText(response.data)
-    } */
-  }
-
   function sendModalInfo(formData){
-    let info;
-    if(componentId == 'category'){
-      info = {type: 'category', items: formData.get("newCategory")};
-      const query = JSON.stringify(info);
-      addFunction(query);
-      fetchAPI(true, info.items)
+    if(componentId == 'addCategory'){
+      const query = formData.get("newCategory");
+      //window.alert(`${query}`);
+      setOpenModal(false);
     }
     else{
-      info = {type: 'inventory', items: formData.get("newItem"), quantity: formData.get("newItemQty"), category: componentId};
-      const query = JSON.stringify(info);
-      addFunction(query);
-      fetchAPI(false, info.category);
+      const newItem = formData.get("newItem");
+      const newItemQty = formData.get("newItemQty");
+      window.alert(`${newItem},${newItemQty}`);
+      setOpenModal(false);
     }
-    //It should be sent as an object for the sake of consistency.
-    //An object needs to be stringified in order to be sent as a parameter query.
-    setOpenModal(false);
   }
 
   return (

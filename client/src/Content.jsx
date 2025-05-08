@@ -20,14 +20,13 @@ function Content({modalFunction, APIText, defaultState,
         <div onClick = {()=>buttonTest("all")} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"All Categories"} id = {'all'}/>
         </div>
-        <div onClick={()=>modalFunction('category')} className = 'categoryBtnWrapper'>
+        <div onClick={()=>modalFunction('addCategory')} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"Add Category"} id = {'addCategory'} />
         </div>
         </>
       ):(
         <>
           {categoryText.map((categoryItem)=>{
-            //console.log(categoryItem.inventory);
             return(
               <CategoryBox itemList={categoryItem.inventory} 
               name = {categoryItem.category} 
