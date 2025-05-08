@@ -5,7 +5,7 @@ function MyModal({closeModal, id, submitModal}){
    //them like this prevents a warning about disconecting the form.
     return(
         <section className="modal">
-            {id == 'addCategory'? (
+            {id == 'category'? (
                 <>
                 <form action={submitModal}>
                     <label htmlFor = "newCategory">New Category:</label>
@@ -14,7 +14,7 @@ function MyModal({closeModal, id, submitModal}){
                 </form>
                 <Button text = {"Close"} handleClick={closeModal}/>
                 </>
-            ):(
+            ):( 
                 <>
                 <form action = {submitModal}>
                     <label htmlFor = "newItem" >New Item:</label>

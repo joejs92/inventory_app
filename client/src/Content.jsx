@@ -20,7 +20,7 @@ function Content({modalFunction, APIText, defaultState,
         <div onClick = {()=>buttonTest("all")} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"All Categories"} id = {'all'}/>
         </div>
-        <div onClick={()=>modalFunction('addCategory')} className = 'categoryBtnWrapper'>
+        <div onClick={()=>modalFunction('category')} className = 'categoryBtnWrapper'>
               <CategoryButton text = {"Add Category"} id = {'addCategory'} />
         </div>
         </>
