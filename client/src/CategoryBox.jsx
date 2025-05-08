@@ -3,8 +3,9 @@ import Button from './button.jsx';
 import ItemBox from './ItemBox';
 import axios from 'axios';
 
-function CategoryBox({itemList, name, id, addClick}){
-    const [itemObject, setItemObject] = useState(itemList);
+function CategoryBox({itemList, name, id, addClick, deleteItem}){
+    //console.log(itemList);
+    //const [itemObject, setItemObject] = useState(itemList);
     
     const deleteItem = async(id) => {
         if(window.confirm("Are you sure you want to permanently delete this item?")){
