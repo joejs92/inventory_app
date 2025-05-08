@@ -56,13 +56,6 @@ function App() {
     }
   }
 
-  const deleteItem = async(id) => {
-    if(window.confirm("Are you sure you want to permanently delete this item?")){
-        setCategoryText(categoryText.filter((item) => item.id !== id));
-        response = await axios.delete(`http://localhost:3000/?item=${id}`);
-    }
-  }
-
   function openModalFunction(id){
     setComponentId(id);
     setOpenModal(true);
@@ -95,8 +88,7 @@ function App() {
       categoryText={categoryText}
       buttonTest={buttonTest}
       deleteButton={deleteButton}
-      setState={setState}
-      deleteItem={deleteItem}/>
+      setState={setState}/>
       <Footer/>
       {openModal && <><MyModal closeModal={closeModalFunction} id = {componentId} submitModal={sendModalInfo}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
     </div>
