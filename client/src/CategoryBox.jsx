@@ -3,16 +3,16 @@ import Button from './button.jsx';
 import ItemBox from './ItemBox';
 import axios from 'axios';
 
-function CategoryBox({itemList, name, id, addClick}){
-    console.log(itemList);
-    const [itemObject, setItemObject] = useState(itemList);
+function CategoryBox({itemList, name, id, addClick, deleteItem}){
+    //console.log(itemList);
+    //const [itemObject, setItemObject] = useState(itemList);
     
-    const deleteItem = async(id) => {
+    /* const deleteItem = async(id) => {
         if(window.confirm("Are you sure you want to permanently delete this item?")){
             setItemObject(itemObject.filter((item) => item.id !== id));
             response = await axios.delete(`http://localhost:3000/?item=${id}`);
         }
-      }
+      } */
     return(
         <div className='categoryBox' id = {id}>
             <div className='categoryHeader'>
@@ -23,7 +23,7 @@ function CategoryBox({itemList, name, id, addClick}){
             </div>
             <div className='categoryContent'>
                 <ul>
-                    {itemObject.map((item)=>{
+                    {itemList.map((item)=>{
                         return(
                             <li key={item.id}>
                                 <ItemBox id={item.id} name = {item.name} qty = {item.quantity} deleteClick = {deleteItem}/>
