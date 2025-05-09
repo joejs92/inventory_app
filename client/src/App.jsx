@@ -65,15 +65,15 @@ function App() {
     setOpenModal(false);
   }
 
-  const addFunction = async(query)=>{
-    await axios.post(`http://localhost:3000/?query=${query}`);
-    /* if(typeOfAdd == 'category'){
+  const addFunction = async(query, typeOfAdd)=>{
+    response = await axios.post(`http://localhost:3000/?query=${query}`);
+    if(typeOfAdd == 'category'){
       setAPIText(response.data);
     }
     else if(typeOfAdd == 'inventory'){
       console.log(response.data);
-      //setCategoryText(response.data)
-    } */
+      setCategoryText(response.data)
+    }  
   }
 
   function sendModalInfo(formData){
@@ -81,14 +81,12 @@ function App() {
     if(componentId == 'category'){
       info = {type: 'category', items: formData.get("newCategory")};
       const query = JSON.stringify(info);
-      addFunction(query);
-      fetchAPI(true, info.items)
+      addFunction(query, info.type);
     }
     else{
       info = {type: 'inventory', items: formData.get("newItem"), quantity: formData.get("newItemQty"), category: componentId};
       const query = JSON.stringify(info);
-      addFunction(query);
-      fetchAPI(false, info.category);
+      addFunction(query, info.type);
     }
     //It should be sent as an object for the sake of consistency.
     //An object needs to be stringified in order to be sent as a parameter query.

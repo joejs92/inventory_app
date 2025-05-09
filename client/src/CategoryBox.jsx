@@ -13,6 +13,16 @@ function CategoryBox({itemList, name, id, addClick}){
             response = await axios.delete(`http://localhost:3000/?item=${id}`);
         }
       }
+
+    function woot(){
+        console.log("I can't believe it worked.")
+    }
+
+   /*  const functionWrapper = () =>{
+        addClick;
+        woot;
+    }; */
+
     return(
         <div className='categoryBox' id = {id}>
             <div className='categoryHeader'>

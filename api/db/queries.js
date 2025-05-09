@@ -29,8 +29,8 @@ async function deleteItem(id){
 
 async function addCategory(category){
   await pool.query("INSERT INTO categories (category) VALUES ($1)",[category]);
-  /* const { rows } = await pool.query("SELECT * FROM categories");
-  return rows; */
+  const { rows } = await pool.query("SELECT * FROM categories");
+  return rows;
 }
 
 async function addItem(category, name, quantity){

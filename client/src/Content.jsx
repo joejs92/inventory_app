@@ -5,7 +5,7 @@ import CategoryBox from './CategoryBox.jsx';
 
 function Content({modalFunction, APIText, defaultState, 
   categoryText, buttonTest, deleteButton, setState}){
-  
+  console.log(APIText);
   return (
     <div className='content'>
       {defaultState ? (
