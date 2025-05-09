@@ -34,22 +34,39 @@ async function deleteInventory(req, res){
     res.send(categories);
   }
   else if(id){
-    await db.deleteItem(id);
+    const itemInfo = JSON.parse(id);
+    if(itemInfo.category == 'all'){
+      await db.deleteItem(itemInfo.id, itemInfo.category);
+      const categories = await db.getAllCategories();
+      for(i in categories){
+        const inventory = await db.getCategoryInventory(categories[i].category);
+        categories[i]['inventory'] = inventory;
+      }
+      res.send(categories);
+    }
+    else{
+      const item = await db.deleteItem(itemInfo.id, itemInfo.category);
+      const categories = [{category: itemInfo.category, inventory: item}];
+      res.send(categories);
+    }
   }
 }
 
 async function addInventory(req, res){
   //The string sent as a parameter needs to be parsed back into an object.
+  //Need to account for the 'all inventory' page. Update this function like
+  //you did for deleteInventory. You'll have to update the JSON request to 
+  //include the category name.
   const newStuff = JSON.parse(req.query.query);
+  console.log(newStuff.type);
   if(newStuff.type == 'category'){
-    //console.log(`Adding the category ${newStuff.items}`);
     const results = await db.addCategory(newStuff.items);
     res.send(results);
   }
   else if(newStuff.type == 'inventory'){
-    //console.log(`Adding ${newStuff.quantity} more ${newStuff.items} to the ${newStuff.category} category.`);
-    await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
-    //res.send(results);
+    const inventory = await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
+    const results = [{category: newStuff.category, inventory: inventory}];
+    res.send(results);
   }
 }
     

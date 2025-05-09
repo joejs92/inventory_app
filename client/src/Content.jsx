@@ -4,8 +4,7 @@ import CategoryButton from './CategoryButton.jsx';
 import CategoryBox from './CategoryBox.jsx';
 
 function Content({modalFunction, APIText, defaultState, 
-  categoryText, buttonTest, deleteButton, setState}){
-  console.log(APIText);
+  categoryText, buttonTest, deleteButton, setState, deleteItem}){
   return (
     <div className='content'>
       {defaultState ? (
@@ -32,6 +31,7 @@ function Content({modalFunction, APIText, defaultState,
               name = {categoryItem.category} 
               id = {categoryItem.category}
               addClick = {modalFunction}
+              deleteItem = {deleteItem}
               />
             )
           })}

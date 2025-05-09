@@ -3,27 +3,9 @@ import Button from './button.jsx';
 import ItemBox from './ItemBox';
 import axios from 'axios';
 
-function CategoryBox({itemList, name, id, addClick}){
-    //console.log(itemList);
-    const [itemObject, setItemObject] = useState(itemList);
-    
-    const deleteItem = async(id) => {
-        if(window.confirm("Are you sure you want to permanently delete this item?")){
-            setItemObject(itemObject.filter((item) => item.id !== id));
-            response = await axios.delete(`http://localhost:3000/?item=${id}`);
-        }
-      }
+function CategoryBox({itemList, name, id, addClick, deleteItem}){
 
-    function woot(){
-        console.log("I can't believe it worked.")
-    }
-
-   /*  const functionWrapper = () =>{
-        addClick;
-        woot;
-    }; */
-
-    return(
+   return(
         <div className='categoryBox' id = {id}>
             <div className='categoryHeader'>
                 <div className='categoryName'>
@@ -33,7 +15,7 @@ function CategoryBox({itemList, name, id, addClick}){
             </div>
             <div className='categoryContent'>
                 <ul>
-                    {itemObject.map((item)=>{
+                    {itemList.map((item)=>{
                         return(
                             <li key={item.id}>
                                 <ItemBox id={item.id} name = {item.name} qty = {item.quantity} deleteClick = {deleteItem}/>

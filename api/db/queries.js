@@ -23,8 +23,10 @@ async function deleteCategory(category){
   return rows;
 }
 
-async function deleteItem(id){
+async function deleteItem(id, category){
   await pool.query("DELETE FROM inventory WHERE id = $1", [id]);
+  const { rows } = await pool.query("SELECT inventory.id, categories.category, name, quantity FROM inventory INNER JOIN categories ON inventory.category = categories.id WHERE categories.category = $1",[category]);
+  return rows;
 }
 
 async function addCategory(category){
@@ -35,8 +37,8 @@ async function addCategory(category){
 
 async function addItem(category, name, quantity){
   await pool.query("INSERT INTO inventory (category, name, quantity) VALUES ((SELECT id FROM categories WHERE categories.category = $1), $2, $3)",[category,name,quantity]);
-  /* const { rows } = await pool.query("SELECT inventory.id, categories.category, name, quantity FROM inventory INNER JOIN categories ON inventory.category = categories.id WHERE categories.category = $1",[category]);
-  return rows;  */
+  const { rows } = await pool.query("SELECT inventory.id, categories.category, name, quantity FROM inventory INNER JOIN categories ON inventory.category = categories.id WHERE categories.category = $1",[category]);
+  return rows;  
 }
 
 module.exports = {

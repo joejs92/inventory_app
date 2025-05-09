@@ -56,6 +56,15 @@ function App() {
     }
   }
 
+  const deleteItem = async(id) => {
+    const info = {id: id, category: category};
+    const query = JSON.stringify(info);
+    if(window.confirm("Are you sure you want to permanently delete this item?")){
+        response = await axios.delete(`http://localhost:3000/?item=${query}`);
+        setCategoryText(response.data);
+    } 
+  }
+
   function openModalFunction(id){
     setComponentId(id);
     setOpenModal(true);
@@ -71,7 +80,6 @@ function App() {
       setAPIText(response.data);
     }
     else if(typeOfAdd == 'inventory'){
-      console.log(response.data);
       setCategoryText(response.data)
     }  
   }
@@ -102,7 +110,8 @@ function App() {
       categoryText={categoryText}
       buttonTest={buttonTest}
       deleteButton={deleteButton}
-      setState={setState}/>
+      setState={setState}
+      deleteItem = {deleteItem}/>
       <Footer/>
       {openModal && <><MyModal closeModal={closeModalFunction} id = {componentId} submitModal={sendModalInfo}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
     </div>
