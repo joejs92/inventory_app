@@ -3,7 +3,7 @@ import Button from './button.jsx';
 import ItemBox from './ItemBox';
 import axios from 'axios';
 
-function CategoryBox({itemList, name, id, addClick, deleteItem}){
+function CategoryBox({itemList, name, id, addClick, deleteItem, changeClick}){
 
    return(
         <div className='categoryBox' id = {id}>
@@ -18,7 +18,7 @@ function CategoryBox({itemList, name, id, addClick, deleteItem}){
                     {itemList.map((item)=>{
                         return(
                             <li key={item.id}>
-                                <ItemBox id={item.id} name = {item.name} qty = {item.quantity} deleteClick = {deleteItem}/>
+                                <ItemBox id={item.id} name = {item.name} qty = {item.quantity} deleteClick = {deleteItem} changeClick = {changeClick}/>
                             </li>
                         )
                     })}

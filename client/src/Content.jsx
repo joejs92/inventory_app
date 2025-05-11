@@ -32,6 +32,7 @@ function Content({modalFunction, APIText, defaultState,
               id = {categoryItem.category}
               addClick = {modalFunction}
               deleteItem = {deleteItem}
+              changeClick = {modalFunction}
               />
             )
           })}

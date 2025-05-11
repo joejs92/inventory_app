@@ -1,16 +1,20 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react'
 import Button from './button.jsx';
-//still need to add the delete button.
 //The items should each have a unique key. May need the UUID stuff for that.
-function ItemBox ({id,name,qty, deleteClick}){
-    const items = [id, name, qty]
-    const [quant, setQuant] = useState({qty}); //for changing the quantity of the item.
+function ItemBox ({id,name,qty, deleteClick, changeClick}){
+    const itemObject = {id: id, name: name, quantity: qty}
+    const items = [itemObject.id, itemObject.name, itemObject.quantity];
+    //const [quant, setQuant] = useState({qty}); //for changing the quantity of the item.
+    function testButton(){
+        window.alert(items);
+    }
     return(
-        <div className='itemBox' id = {id}>
+        <div className='itemBox' id = {itemObject.id}>
             {items.map((item)=>{
                 return(<p>{item}</p>)
             })}
-            <Button text = {"X"} id = {id} handleClick={deleteClick}/>
+            <Button text={"Change Quantity"} id={"changeQuant"} handleClick={changeClick}/>
+            <Button text = {"X"} id = {itemObject.id} handleClick={deleteClick}/>
         </div>
     )
 };
