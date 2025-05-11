@@ -15,6 +15,7 @@ function App() {
   const [defaultState, setDefaultState] = useState(true);
   const [category, setCategory] = useState("");
   const [categoryText, setCategoryText] = useState([]);//for CategoryBoxes
+  const [items, setItems] = useState("");
 
   function setState(){
     setDefaultState(true);
@@ -65,8 +66,9 @@ function App() {
     } 
   }
 
-  function openModalFunction(id){
+  function openModalFunction(id, items){
     setComponentId(id);
+    setItems(items);
     setOpenModal(true);
   }
 
@@ -81,6 +83,9 @@ function App() {
     }
     else if(typeOfAdd == 'inventory'){
       setCategoryText(response.data)
+    }
+    else if(typeOfAdd = 'changeQuant'){
+      setCategoryText(response.data);
     }  
   }
 
@@ -88,6 +93,12 @@ function App() {
     let info;
     if(componentId == 'category'){
       info = {type: 'category', items: formData.get("newCategory")};
+      const query = JSON.stringify(info);
+      addFunction(query, info.type);
+    }
+    else if(componentId == 'changeQuant'){
+      //quantity below isn't an integer; possible cause of problems entering it into DB.
+      info = {type: 'changeQuant', quantity: formData.get("newQuant"), id: items.id};
       const query = JSON.stringify(info);
       addFunction(query, info.type);
     }
@@ -113,7 +124,7 @@ function App() {
       setState={setState}
       deleteItem = {deleteItem}/>
       <Footer/>
-      {openModal && <><MyModal closeModal={closeModalFunction} id = {componentId} submitModal={sendModalInfo}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
+      {openModal && <><MyModal closeModal={closeModalFunction} id = {componentId} submitModal={sendModalInfo} items = {items}/> <div className='overlay' onClick={()=>closeModalFunction()}></div></>}
     </div>
   )
 }

@@ -58,7 +58,6 @@ async function addInventory(req, res){
   //you did for deleteInventory. You'll have to update the JSON request to 
   //include the category name.
   const newStuff = JSON.parse(req.query.query);
-  console.log(newStuff.type);
   if(newStuff.type == 'category'){
     const results = await db.addCategory(newStuff.items);
     res.send(results);
@@ -67,6 +66,9 @@ async function addInventory(req, res){
     const inventory = await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
     const results = [{category: newStuff.category, inventory: inventory}];
     res.send(results);
+  }
+  else if(newStuff.type == 'changeQuant'){
+    console.log(newStuff);
   }
 }
     

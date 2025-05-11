@@ -1,7 +1,7 @@
-function Button ({text, handleClick, id}){
+function Button ({text, handleClick, id, items}){
     //const buttonStyle = {text: {text}}
     return (
-        <button onClick = {()=>handleClick(id)} id={id}>{text}</button>
+        <button onClick = {()=>handleClick(id, items)} id={id}>{text}</button>
     )
 }
 

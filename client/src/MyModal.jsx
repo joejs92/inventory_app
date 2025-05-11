@@ -1,8 +1,9 @@
 import Button from './button';
 
-function MyModal({closeModal, id, submitModal}){
+function MyModal({closeModal, id, submitModal, items}){
     //the buttons look a bit weird and will have to be reworked, but having 
     //them like this prevents a warning about disconecting the form.
+    //An example of complicated conditional rendering.
     function Modal(){
      if(id == 'category'){
          return(
@@ -18,7 +19,15 @@ function MyModal({closeModal, id, submitModal}){
      else if(id == 'changeQuant'){
          return(
             <section className='modal'>
-                <p>{id}</p>
+                {/* <p>{items.id}</p>
+                <p>{items.name}</p>
+                <p>{items.quantity}</p> */}
+                <form action = {submitModal}>
+                    <label htmlFor = "newQuant">{items.name} Quantity:</label>
+                    <input name = "newQuant" id = "newQuant" placeholder = {items.quantity}></input>
+                    <button type="submit">Submit</button>
+                </form>
+                <Button text = {"Close"} handleClick={closeModal}/>
             </section>
          )
      }

@@ -41,6 +41,10 @@ async function addItem(category, name, quantity){
   return rows;  
 }
 
+async function changeQuant(category, id, quantity){
+  await pool.query("")
+}
+
 module.exports = {
   getAllInventory,
   getCategoryInventory,

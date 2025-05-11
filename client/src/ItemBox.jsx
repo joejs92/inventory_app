@@ -13,8 +13,8 @@ function ItemBox ({id,name,qty, deleteClick, changeClick}){
             {items.map((item)=>{
                 return(<p>{item}</p>)
             })}
-            <Button text={"Change Quantity"} id={"changeQuant"} handleClick={changeClick}/>
-            <Button text = {"X"} id = {itemObject.id} handleClick={deleteClick}/>
+            <Button text={"Change Quantity"} id={"changeQuant"} handleClick={changeClick} items = {itemObject}/>
+            <Button text = {"X"} id = {itemObject.id} handleClick={deleteClick} />
         </div>
     )
 };
