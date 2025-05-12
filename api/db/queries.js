@@ -42,7 +42,9 @@ async function addItem(category, name, quantity){
 }
 
 async function changeQuant(category, id, quantity){
-  await pool.query("")
+  await pool.query("UPDATE inventory SET quantity = $1 WHERE id = $2", [quantity, id]);
+  const { rows } = await pool.query("SELECT inventory.id, categories.category, name, quantity FROM inventory INNER JOIN categories ON inventory.category = categories.id WHERE categories.category = $1",[category]);
+  return rows;
 }
 
 module.exports = {
@@ -52,5 +54,6 @@ module.exports = {
   deleteCategory,
   deleteItem,
   addCategory,
-  addItem
+  addItem, 
+  changeQuant
 };

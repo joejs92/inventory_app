@@ -63,12 +63,36 @@ async function addInventory(req, res){
     res.send(results);
   }
   else if(newStuff.type == 'inventory'){
-    const inventory = await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
-    const results = [{category: newStuff.category, inventory: inventory}];
-    res.send(results);
+    if(newStuff.itemCategory == 'all'){
+      await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
+      const categories = await db.getAllCategories();
+      for(i in categories){
+        const inventory = await db.getCategoryInventory(categories[i].category);
+        categories[i]['inventory'] = inventory;
+      }
+      res.send(categories);
+    }
+    else{
+      const inventory = await db.addItem(newStuff.category,newStuff.items,newStuff.quantity);
+      const results = [{category: newStuff.category, inventory: inventory}];
+      res.send(results);
+    }
   }
   else if(newStuff.type == 'changeQuant'){
-    console.log(newStuff);
+    if(newStuff.itemCategory == 'all'){
+      await db.changeQuant(newStuff.category, newStuff.id, newStuff.quantity);
+      const categories = await db.getAllCategories();
+      for(i in categories){
+        const inventory = await db.getCategoryInventory(categories[i].category);
+        categories[i]['inventory'] = inventory;
+      }
+      res.send(categories);
+    }
+    else{
+      const inventory = await db.changeQuant(newStuff.category, newStuff.id, newStuff.quantity);
+      const results = [{category: newStuff.category, inventory: inventory}];
+      res.send(results);
+    }
   }
 }
     

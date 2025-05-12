@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react'
 import Button from './button.jsx';
 //The items should each have a unique key. May need the UUID stuff for that.
-function ItemBox ({id,name,qty, deleteClick, changeClick}){
-    const itemObject = {id: id, name: name, quantity: qty}
+function ItemBox ({id,name,qty, deleteClick, changeClick, category}){
+    const itemObject = {id: id, name: name, quantity: qty, category: category}
     const items = [itemObject.id, itemObject.name, itemObject.quantity];
     //const [quant, setQuant] = useState({qty}); //for changing the quantity of the item.
-    function testButton(){
-        window.alert(items);
-    }
     return(
         <div className='itemBox' id = {itemObject.id}>
             {items.map((item)=>{

@@ -97,13 +97,12 @@ function App() {
       addFunction(query, info.type);
     }
     else if(componentId == 'changeQuant'){
-      //quantity below isn't an integer; possible cause of problems entering it into DB.
-      info = {type: 'changeQuant', quantity: formData.get("newQuant"), id: items.id};
+      info = {type: 'changeQuant', quantity: formData.get("newQuant"), id: items.id, category: category, itemCategory: category};
       const query = JSON.stringify(info);
       addFunction(query, info.type);
     }
     else{
-      info = {type: 'inventory', items: formData.get("newItem"), quantity: formData.get("newItemQty"), category: componentId};
+      info = {type: 'inventory', items: formData.get("newItem"), quantity: formData.get("newItemQty"), category: componentId, itemCategory: category};
       const query = JSON.stringify(info);
       addFunction(query, info.type);
     }
